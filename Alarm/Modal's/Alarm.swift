@@ -8,5 +8,30 @@
 
 import Foundation
 class Alarm{
+    var fireDate: Date
+    var fireTime: String{
+        get{
+            let dateFormatter = DateFormatter()
+            return dateFormatter.string(from: fireDate)
+        } set(timeText){
+            self.fireTime = timeText
+        }
+    }
+    var name: String
+    var isEnabled: Bool
+    //let uuid: String
+    
+    init(fireDate: Date, name: String, isEnabled: Bool) {
+        self.fireDate = fireDate
+        self.name = name
+        self.isEnabled = isEnabled
+        //self.uuid = uuid
+    }
+}
+extension Alarm: Equatable{
+    static func == (lhs: Alarm, rhs: Alarm) -> Bool {
+        return lhs.fireDate == rhs.fireDate && lhs.name == rhs.name && lhs.isEnabled == rhs.isEnabled
+    }
+    
     
 }
