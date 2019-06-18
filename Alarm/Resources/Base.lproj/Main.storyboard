@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="83" id="jmn-pa-LjL" customClass="SwitchTableViewCell" customModule="Alarm" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="83"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="alarmCell" rowHeight="85" id="jmn-pa-LjL" customClass="SwitchTableViewCell" customModule="Alarm" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jmn-pa-LjL" id="Den-Mw-mRr">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="82.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCM-Ml-XNQ">
@@ -38,13 +38,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3AV-Te-6Lc">
-                                            <rect key="frame" x="345" y="26" width="51" height="31"/>
+                                            <rect key="frame" x="345" y="27" width="51" height="31"/>
                                             <connections>
                                                 <action selector="switchPressed:" destination="jmn-pa-LjL" eventType="valueChanged" id="vRb-hA-UB3"/>
                                             </connections>
                                         </switch>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="4os-vh-89p" secondAttribute="bottom" constant="1" id="0IP-hc-FfY"/>
                                         <constraint firstItem="vCM-Ml-XNQ" firstAttribute="leading" secondItem="Den-Mw-mRr" secondAttribute="leadingMargin" id="CtO-CA-6D9"/>
                                         <constraint firstItem="4os-vh-89p" firstAttribute="top" secondItem="vCM-Ml-XNQ" secondAttribute="bottom" constant="8" id="Yzy-fk-rbq"/>
                                         <constraint firstItem="3AV-Te-6Lc" firstAttribute="trailing" secondItem="Den-Mw-mRr" secondAttribute="trailingMargin" id="oBb-zh-eIy"/>
@@ -57,6 +58,7 @@
                                     <outlet property="alarmSwitch" destination="3AV-Te-6Lc" id="AiR-G1-PDN"/>
                                     <outlet property="nameLabel" destination="vCM-Ml-XNQ" id="8KM-bg-0s1"/>
                                     <outlet property="timeLabel" destination="4os-vh-89p" id="GZ5-CP-XgT"/>
+                                    <segue destination="Jij-k0-fEz" kind="show" identifier="alarmUpdate" id="mIj-Gw-nbj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -122,7 +124,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="keH-Z8-Mnk">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="163.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="163"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="582494553.26486599">
                                                         <!--2019-06-17 20:02:33 +0000-->
                                                     </date>
@@ -151,7 +153,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                                     <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="28"/>
-                                                    <state key="normal" title="Enable">
+                                                    <state key="normal" title="Enabled">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
@@ -176,7 +178,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="YtV-Ui-Wm3">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="iST-6E-Xmz"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="iST-6E-Xmz">
+                            <connections>
+                                <action selector="save:" destination="Jij-k0-fEz" id="s41-Rk-y3T"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="enableDisable" destination="j8y-og-MgZ" id="9ZC-Rh-IIl"/>
@@ -207,4 +213,7 @@
             <point key="canvasLocation" x="113.04347826086958" y="154.6875"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="mIj-Gw-nbj"/>
+    </inferredMetricsTieBreakers>
 </document>

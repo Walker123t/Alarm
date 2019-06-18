@@ -12,6 +12,8 @@ class Alarm{
     var fireTime: String{
         get{
             let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .short
             return dateFormatter.string(from: fireDate)
         } set(timeText){
             self.fireTime = timeText
