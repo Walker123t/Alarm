@@ -8,25 +8,28 @@
 
 import UIKit
 
-class AlarmDetailTableViewController: UITableViewController, UITextFieldDelegate {
+class AlarmDetailTableViewController: UITableViewController, UITextFieldDelegate, AlarmScheduler {
     
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var enableDisable: UIButton!
     
-    var landingPad: Alarm?
-    var localIsEnabled: Bool!
+    var timeSet: TimeInterval?
+    var localIsEnabled = true
+    var landingPad: Alarm?{
+        didSet{
+            guard let isEnabled = landingPad?.isEnabled, let name = landingPad?.name, let time = landingPad?.fireDate else {return}
+            localIsEnabled = !isEnabled
+            updateButton()
+            nameLabel.text = name
+            timePicker.date = time
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         nameLabel.delegate = self
-        localIsEnabled = true
         enableDisable.layer.cornerRadius = enableDisable.frame.height / 2.0
-        guard let isEnabled = landingPad?.isEnabled, let name = landingPad?.name, let time = landingPad?.fireDate else {return}
-        localIsEnabled = !isEnabled
-        updateButton()
-        nameLabel.text = name
-        timePicker.date = time
     }
     
     @IBAction func buttonTapped(_ sender: Any) {
@@ -62,4 +65,3 @@ class AlarmDetailTableViewController: UITableViewController, UITextFieldDelegate
         }
     }
 }
-

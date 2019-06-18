@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class Alarm{
+class Alarm: Codable{
     var fireDate: Date
     var fireTime: String{
         get{
@@ -21,13 +21,13 @@ class Alarm{
     }
     var name: String
     var isEnabled: Bool
-    //let uuid: String
+    let uuid: String
     
-    init(fireDate: Date, name: String, isEnabled: Bool) {
+    init(fireDate: Date, name: String, isEnabled: Bool, uuid: String = UUID().uuidString) {
         self.fireDate = fireDate
         self.name = name
         self.isEnabled = isEnabled
-        //self.uuid = uuid
+        self.uuid = uuid
     }
 }
 extension Alarm: Equatable{

@@ -123,8 +123,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="163.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="keH-Z8-Mnk">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="163"/>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="keH-Z8-Mnk">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="163.5"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="582494553.26486599">
                                                         <!--2019-06-17 20:02:33 +0000-->
                                                     </date>
